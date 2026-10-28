@@ -1,0 +1,124 @@
+{
+  "config": {
+    "step": {
+      "user": {
+        "title": "Cloudless RMV – Zugangsschlüssel",
+        "description": "Gib deinen eigenen RMV-Open-Data-Schlüssel ein. Einen Schlüssel beantragst du kostenlos unter {open_data_url}. Der Schlüssel bleibt privat und wird nur in deiner Home-Assistant-Instanz gespeichert.",
+        "data": {
+          "api_key": "Zugangsschlüssel (accessId)"
+        }
+      },
+      "reauth_confirm": {
+        "title": "Schlüssel erneuern",
+        "description": "Der Schlüssel wurde abgelehnt. Neuen Schlüssel von {open_data_url} eintragen.",
+        "data": {
+          "api_key": "Zugangsschlüssel (accessId)"
+        }
+      },
+      "stop": {
+        "title": "Haltestelle suchen",
+        "description": "Name der Haltestelle, an der du einsteigst.",
+        "data": {
+          "query": "Suchbegriff"
+        }
+      },
+      "stop_pick": {
+        "title": "Haltestelle wählen",
+        "data": {
+          "pick": "Haltestelle"
+        }
+      },
+      "direction": {
+        "title": "Richtung (optional)",
+        "description": "Nur Fahrten in Richtung dieser Haltestelle anzeigen (z. B. Frankfurt Hauptbahnhof). Leer lassen = alle Richtungen.",
+        "data": {
+          "query": "Richtungs-Haltestelle"
+        }
+      },
+      "direction_pick": {
+        "title": "Richtung wählen",
+        "data": {
+          "pick": "Richtung"
+        }
+      },
+      "watch": {
+        "title": "Haltestellen prüfen",
+        "description": "Haltestellen, bei denen du sehen willst, ob die Bahn dort hält (z. B. Mühlberg, Konstablerwache, Hauptbahnhof). Bisher: {added}. Leer lassen und bestätigen = weiter.",
+        "data": {
+          "query": "Haltestelle hinzufügen"
+        }
+      },
+      "watch_pick": {
+        "title": "Haltestelle wählen",
+        "data": {
+          "pick": "Haltestelle"
+        }
+      },
+      "connection": {
+        "title": "Weiterfahrt prüfen (optional)",
+        "description": "Prüft, ob an einer deiner Umstiegshaltestellen Bahnen zu einem Ziel fahren (z. B. Straßenbahn zur Friedensbrücke). Bisher: {added}. Leer lassen = fertig.",
+        "data": {
+          "query": "Ziel-Haltestelle"
+        }
+      },
+      "connection_pick": {
+        "title": "Ziel wählen",
+        "data": {
+          "pick": "Ziel"
+        }
+      },
+      "connection_transfer": {
+        "title": "Umstieg",
+        "description": "An welcher Haltestelle steigst du für „{target}“ um?",
+        "data": {
+          "transfer": "Umstiegshaltestelle"
+        }
+      }
+    },
+    "error": {
+      "invalid_auth": "Schlüssel ungültig oder gesperrt.",
+      "quota": "Anfragelimit des RMV erreicht – später erneut versuchen.",
+      "cannot_connect": "RMV nicht erreichbar.",
+      "no_results": "Keine Haltestelle gefunden.",
+      "unknown": "Unbekannter Fehler."
+    },
+    "abort": {
+      "already_configured": "Diese Haltestelle/Richtung ist bereits eingerichtet.",
+      "reauth_successful": "Schlüssel aktualisiert."
+    }
+  },
+  "options": {
+    "step": {
+      "init": {
+        "title": "Einstellungen",
+        "description": "Haltestellen ändern: Eintrag löschen und neu anlegen.",
+        "data": {
+          "walk_min": "Gehzeit zur Haltestelle (Minuten)",
+          "max_rows": "Angezeigte Fahrten",
+          "duration": "Zeitfenster der Abfrage (Minuten)",
+          "transfer_buffer": "Umstiegspuffer (Minuten)"
+        }
+      }
+    }
+  },
+  "entity": {
+    "sensor": {
+      "next_departure": {
+        "name": "Nächste Abfahrt"
+      },
+      "station": {
+        "name": "{station}",
+        "state": {
+          "ok": "wird angefahren",
+          "none": "wird NICHT angefahren",
+          "unknown": "unbekannt"
+        }
+      }
+    },
+    "binary_sensor": {
+      "connection": {
+        "name": "Weiterfahrt {transfer} → {target}"
+      }
+    }
+  }
+}

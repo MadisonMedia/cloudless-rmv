@@ -1,0 +1,124 @@
+{
+  "config": {
+    "step": {
+      "user": {
+        "title": "Cloudless RMV – access key",
+        "description": "Enter your own RMV Open Data key. Request one for free at {open_data_url}. The key stays private and is only stored in your Home Assistant instance.",
+        "data": {
+          "api_key": "Access key (accessId)"
+        }
+      },
+      "reauth_confirm": {
+        "title": "Renew key",
+        "description": "The key was rejected. Enter a new key from {open_data_url}.",
+        "data": {
+          "api_key": "Access key (accessId)"
+        }
+      },
+      "stop": {
+        "title": "Find stop",
+        "description": "Name of the stop where you board.",
+        "data": {
+          "query": "Search term"
+        }
+      },
+      "stop_pick": {
+        "title": "Choose stop",
+        "data": {
+          "pick": "Stop"
+        }
+      },
+      "direction": {
+        "title": "Direction (optional)",
+        "description": "Only show trips towards this stop (e.g. Frankfurt Hauptbahnhof). Leave empty for all directions.",
+        "data": {
+          "query": "Direction stop"
+        }
+      },
+      "direction_pick": {
+        "title": "Choose direction",
+        "data": {
+          "pick": "Direction"
+        }
+      },
+      "watch": {
+        "title": "Stops to check",
+        "description": "Stops where you want to know whether the train calls there. So far: {added}. Leave empty and submit to continue.",
+        "data": {
+          "query": "Add stop"
+        }
+      },
+      "watch_pick": {
+        "title": "Choose stop",
+        "data": {
+          "pick": "Stop"
+        }
+      },
+      "connection": {
+        "title": "Onward connection (optional)",
+        "description": "Checks whether services run from one of your transfer stops to a destination (e.g. tram to Friedensbrücke). So far: {added}. Leave empty to finish.",
+        "data": {
+          "query": "Destination stop"
+        }
+      },
+      "connection_pick": {
+        "title": "Choose destination",
+        "data": {
+          "pick": "Destination"
+        }
+      },
+      "connection_transfer": {
+        "title": "Transfer",
+        "description": "Where do you change for “{target}”?",
+        "data": {
+          "transfer": "Transfer stop"
+        }
+      }
+    },
+    "error": {
+      "invalid_auth": "Key invalid or blocked.",
+      "quota": "RMV request limit reached – try again later.",
+      "cannot_connect": "RMV not reachable.",
+      "no_results": "No stop found.",
+      "unknown": "Unknown error."
+    },
+    "abort": {
+      "already_configured": "This stop/direction is already configured.",
+      "reauth_successful": "Key updated."
+    }
+  },
+  "options": {
+    "step": {
+      "init": {
+        "title": "Settings",
+        "description": "To change stops, delete the entry and add it again.",
+        "data": {
+          "walk_min": "Walking time to the stop (minutes)",
+          "max_rows": "Trips shown",
+          "duration": "Query window (minutes)",
+          "transfer_buffer": "Transfer buffer (minutes)"
+        }
+      }
+    }
+  },
+  "entity": {
+    "sensor": {
+      "next_departure": {
+        "name": "Next departure"
+      },
+      "station": {
+        "name": "{station}",
+        "state": {
+          "ok": "served",
+          "none": "NOT served",
+          "unknown": "unknown"
+        }
+      }
+    },
+    "binary_sensor": {
+      "connection": {
+        "name": "Onward {transfer} → {target}"
+      }
+    }
+  }
+}

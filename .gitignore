@@ -1,0 +1,23 @@
+# Secrets – never commit
+secrets.yaml
+*.secret
+.env
+.env.*
+*.key
+
+# Python / tooling
+__pycache__/
+*.pyc
+.pytest_cache/
+.venv/
+venv/
+.coverage
+htmlcov/
+
+# Local dumps that may contain personal data / the key in URLs
+diagnostics*.json
+*.har
+*.log
+
+# Real API dump (RMV timetable data, not redistributed)
+tests/fixtures/real_board_sample.yaml

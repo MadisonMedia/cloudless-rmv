@@ -1,0 +1,33 @@
+name: Tests
+on: [push, pull_request]
+jobs:
+  pure:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: { python-version: "3.13" }
+      - run: pip install -r requirements_test.txt
+      - run: PYTEST_DISABLE_PLUGIN_AUTOLOAD=1 python -m pytest tests --ignore=tests/ha -q
+  homeassistant:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: { python-version: "3.13" }
+      - run: pip install -r requirements_test.txt pytest-homeassistant-custom-component
+      - run: python -m pytest tests/ha -q
+  card:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with: { node-version: "22" }
+      - run: node --check custom_components/cloudless_rmv/www/cloudless-rmv-card.js
+  secrets:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: No access keys in repo
+        run: |
+          ! grep -rEn "accessId=[A-Za-z0-9-]{8,}" --exclude-dir=.git --exclude-dir=.github . 
